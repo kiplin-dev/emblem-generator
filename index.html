@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+
+    <script type="text/javascript" src="node_modules/raphael/raphael.min.js"></script>
+    <script type="text/javascript" src="src/emblem-generator.js"></script>
+    <script type="text/javascript" src="src/assets.js"></script>
+</head>
+<body>
+    <h2>Test</h2>
+    <div id="emblem-div"></div>
+
+    <script>
+      emblemGenerator.init('emblem-div', 256, 'transparent');
+
+      emblemGenerator.drawEmblemObj({
+        "background_id":3,
+        "foreground_id":103,
+        "flags":["FlipBackgroundHorizontal"],
+        "background_color_id":348,
+        "foreground_primary_color_id":443,
+        "foreground_secondary_color_id":473
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "emblem-generator",
+  "version": "1.0.0",
+  "description": "Generate SVG emblems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pochwar/emblem-generator.git"
+  },
+  "keywords": [
+    "emblem",
+    "generator",
+    "svg"
+  ],
+  "author": "Benoît Ripoche",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pochwar/emblem-generator/issues"
+  },
+  "homepage": "https://github.com/Pochwar/emblem-generator#readme",
+  "dependencies": {
+    "raphael": "^2.3.0"
+  }
+}
