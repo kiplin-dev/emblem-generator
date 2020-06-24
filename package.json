@@ -4,7 +4,9 @@
   "description": "Generate SVG emblems",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-src": "babel src --out-file build/emblem-generator.js",
+    "build-asset-generator": "babel asset-generator -d build",
+    "generate-assets": "node build/AssetGenerator.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,12 @@
   "homepage": "https://github.com/Pochwar/emblem-generator#readme",
   "dependencies": {
     "raphael": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "extract-svg-path": "^2.1.0",
+    "regenerator-runtime": "^0.13.5",
+    "svg-parser": "^2.0.4"
   }
 }
