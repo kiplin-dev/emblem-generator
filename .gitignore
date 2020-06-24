@@ -1,1 +1,20 @@
+# Dependencies
 node_modules
+
+# Generated Assets
+src/emblem-generator/assets.js
+
+# Builded files
+#build/
+#!build/.gitkeep
+
+# Assets (keep demo assets)
+assets/
+!assets/backgrounds/1.svg
+!assets/backgrounds/2.svg
+!assets/backgrounds/3.svg
+!assets/backgrounds/4.svg
+!assets/emblems/cup.svg
+!assets/emblems/pyramid.svg
+!assets/emblems/star.svg
+!assets/emblems/turtle.svg

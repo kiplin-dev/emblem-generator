@@ -7,8 +7,7 @@ import regeneratorRuntime from "regenerator-runtime"
 class AssetGenerator {
   async generate() {
 
-    let assets = 'if (!window.emblemGenerator)\n' +
-      '\temblemGenerator = {};\n\n'
+    let assets = 'const assets = {}\n\n'
 
     const bgDefs = await this._generateBgDefs()
     const defs = await this._generateDefs()
@@ -16,7 +15,9 @@ class AssetGenerator {
     assets += bgDefs
     assets += defs
 
-    fs.writeFile('src/assets.js', assets, (err) => {
+    assets += '\n\nexport default assets;'
+
+    fs.writeFile('src/emblem-generator/assets.js', assets, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
 
@@ -33,7 +34,7 @@ class AssetGenerator {
       fs.readdir(emblemsPath, async (err, files) => {
         if (err) throw err;
 
-        let defs = 'emblemGenerator.defs = {';
+        let defs = 'assets.defs = {';
 
         let i = 0
         for (const fileName of files) {
@@ -84,7 +85,7 @@ class AssetGenerator {
       fs.readdir(bgPath, (err, files) => {
         if (err) throw err
 
-        let bgDefs = 'emblemGenerator.bg_defs = {'
+        let bgDefs = 'assets.bg_defs = {'
         bgDefs += '"0":{"size":256,"t":false,"p":""},'
 
         let i = 0
@@ -128,4 +129,6 @@ class AssetGenerator {
 }
 
 const assetGenerator = new AssetGenerator()
+
 assetGenerator.generate()
+

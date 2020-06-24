@@ -4,10 +4,12 @@
   "description": "Generate SVG emblems",
   "main": "index.js",
   "scripts": {
-    "build-src": "babel src --out-file build/emblem-generator.js",
-    "build-asset-generator": "babel asset-generator -d build",
+    "build-src-back": "babel src --out-file build/emblem-generator.js",
+    "build-asset-generator": "babel src/asset-generator -d build",
+    "build-asset-generator-test": "webpack src/asset-generator --config webpack.config.js",
+    "build-asset-generator-test2": "webpack src2",
     "generate-assets": "node build/AssetGenerator.js",
-    "build-src-test": "webpack src-test"
+    "build-src": "webpack src/emblem-generator --config webpack.config.js"
   },
   "repository": {
     "type": "git",
