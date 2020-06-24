@@ -4,12 +4,9 @@
   "description": "Generate SVG emblems",
   "main": "index.js",
   "scripts": {
-    "build-src-back": "babel src --out-file build/emblem-generator.js",
     "build-asset-generator": "babel src/asset-generator -d build",
-    "build-asset-generator-test": "webpack src/asset-generator --config webpack.config.js",
-    "build-asset-generator-test2": "webpack src2",
     "generate-assets": "node build/AssetGenerator.js",
-    "build-src": "webpack src/emblem-generator --config webpack.config.js"
+    "build": "webpack src/emblem-generator --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -26,13 +23,11 @@
     "url": "https://github.com/Pochwar/emblem-generator/issues"
   },
   "homepage": "https://github.com/Pochwar/emblem-generator#readme",
-  "dependencies": {
-    "raphael": "^2.3.0"
-  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "extract-svg-path": "^2.1.0",
+    "raphael": "^2.3.0",
     "regenerator-runtime": "^0.13.5",
     "svg-parser": "^2.0.4",
     "webpack": "^4.43.0",
