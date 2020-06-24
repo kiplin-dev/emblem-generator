@@ -5,8 +5,8 @@ node_modules
 src/emblem-generator/assets.js
 
 # Builded files
-#build/
-#!build/.gitkeep
+build/
+!build/.gitkeep
 
 # Assets (keep demo assets)
 assets/
