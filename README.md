@@ -41,9 +41,9 @@ emblemGenerator.init('emblem-div', 128, '#3682a0');
 
 ### Development
 
-The point of the project is to provide an emblem generator with your own assets!
+The point of the project is to provide an emblem generator with which you can add your own assets!
 
-For this, I developed an Asset Generator to generate backgrounds and foregrounds from SVG files.
+For this, I developed an Asset Generator to generate backgrounds and emblems from SVG files.
 
 To use this Asset Generator, follow the guide ;)
 
@@ -61,7 +61,7 @@ Once installed, get dependencies with the `yarn` command.
 There are already demo assets in 'assets/backgrounds' and 'assets/emblems' folders. To add some assets, just add some SVG files in these folders.
 
 The files have some requirements so that the Asset Generator works properly:
-- The name of the file will be it ID (without the extension), so choose simple names without special characters
+- The name of the file will be its ID (without the extension), so choose simple names without special characters
 - SVG file should be 256x256
 - SVG file should be as simple as possible: avoid transformations like 'scale' or 'translate' because only the path will be used 
 - For backgrounds, `path` tags must be nested just below the `svg` tag. See the SVG files in `assets/backgrounds` folder for example
