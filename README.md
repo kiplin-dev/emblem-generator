@@ -1,56 +1,118 @@
-## Emblem Generator: JavaScript Library used to generate SVG emblems
+## Emblem Generator: JavaScript library to generate SVG emblems
 
-Based on unmaintained repository [GW2Emblem](https://github.com/mtodor/gw2emblem)
-
-### Requirements
-
-[Raphaël](https://github.com/DmitryBaranovskiy/raphael/) - JavaScript library is used for drawing SVG image.
+Based on unmaintained repository [GW2Emblem](https://github.com/mtodor/gw2emblem) by Mladen Todorovic (mtodor@gmail.com)
 
 ### How to use!
 
-Include following files into HTML:
+Include `emblem-generator.js` file into HTML:
 
 ```
-    raphael-min.js
-    gw2emblem-defs.js
-    gw2emblem.js
+<script type="text/javascript" src="emblem-generator.js"></script>
 ```
 
-Init gw2emblem in empty div with [ID = 'gw2embelm-div']:
+Init emblemGenerator in empty div with the id 'emblem-div'
 
 ```
-    // 'gw2embelm-div' is div ID and 256 is size of emblem in pixels
-    gw2emblem.init('gw2embelm-div', 256);
+    // 'emblem-div' is div ID and 256 is size of emblem in pixels
+    emblemGenerator.init('emblem-div', 256);
 ```
 
-Display GW2 Emblem with object fatched from [GW2 API Docs](https://forum-en.guildwars2.com/forum/community/api/API-Documentation):
+Display Emblem defined with object option:
 
 ```
-    gw2emblem.drawEmblemGw2({
-    	"background_id":2,
-    	"foreground_id":103,
+    emblemGenerator.drawEmblemObj({
+    	"background_id":1,
+    	"foreground_id":"star",
     	"flags":[],
-    	"background_color_id":673,
-    	"foreground_primary_color_id":443,
-    	"foreground_secondary_color_id":473
+    	"background_color_id":348,
+    	"foreground_primary_color_id":52,
+    	"foreground_secondary_color_id":113
     });
 ```
 
-### Notes:
-
-It's possible to use background color (instead of default image) - it's sent as 3rd argument for init function call, fe:
+It's possible to use background color (instead of default image) - it's sent as 3rd argument for init function call:
 ```
-gw2emblem.init('gw2embelm-div', 128, 'transparent');
+emblemGenerator.init('emblem-div', 128, 'transparent');
 ```
 or
 ```
-gw2emblem.init('gw2embelm-div', 128, '#3682a0');
+emblemGenerator.init('emblem-div', 128, '#3682a0');
 ```
+
+### Development
+
+The point of the project is to provide an emblem generator with your own assets!
+
+For this, I developed an Asset Generator to generate backgrounds and foregrounds from SVG files.
+
+To use this Asset Generator, follow the guide ;)
+
+#### Requirements
+
+For the following parts, you will need:
+- NodeJs
+- Yarn (or NPM)
+
+Once installed, get dependencies with the `yarn` command.
+
+#### Asset Generator
+
+##### Prepare the files
+There are already demo assets in 'assets/backgrounds' and 'assets/emblems' folders. To add some assets, just add some SVG files in these folders.
+
+The files have some requirements so that the Asset Generator works properly:
+- The name of the file will be it ID (without the extension), so choose simple names without special characters
+- SVG file should be 256x256
+- SVG file should be as simple as possible: avoid transformations like 'scale' or 'translate' because only the path will be used 
+- For backgrounds, `path` tags must be nested just below the `svg` tag. See the SVG files in `assets/backgrounds` folder for example
+- For emblems, `path` tags must be nested just below the `svg` tag OR nested in a `g` tag to group paths by fill color. The `g` must be nested under the `svg` tag. See the SVG files in `assets/emblems` folder for example
+- For emblems, the fill color will be used to determinate to which group belongs the shape. There are 4 different groups:
+    - Primary color (use the `foreground_primary_color_id` option)
+    - Secondary color (use the `foreground_secondary_color_id` option)
+    - Secondary color transparent (use the `foreground_secondary_color_id` option with some opacity)
+    - Black transparent (use black color with some opacity)
+ 
+    So to determine in which group to dispatch the path, check this table:
+    
+    | Group                       | Color code                   |
+    |-----------------------------|----------------------------|
+    | Primary color               | #ff0000                    |
+    | Secondary color             | #00ff00                    |
+    | Secondary color transparent | #0000ff                    |
+    | Black transparent           | #000000 or any other color |
+    
+    Once again, see the SVG files in `assets/emblems` folder for example
+    
+##### Generate the assets
+
+Run `yarn generate-assets` to generate the assets then run `yarn build` to rebuild the `embelm-generator.js` file.
+
+You will now be able to use the new assets by passing their IDs (the SVG filename without the extension) to the object array in `drawEmblemObj()` method in your html file.
+
+#### Modify the source code
+
+If you want to modify the source code to your own needs, just check the files in `src` folder.
+
+Any PR is welcome :)
+
+##### Asset Generator
+
+For the Asset Generator, modify the `src/asset-generator/AssetGenerator.js` file.
+
+Then run `yarn build-asset-generator`. It uses babel to generate `util/AssetGenerator` that is used by the command `yarn generate-assets`
+
+##### Emblem Generator
+
+There are 4 source files for Emblem Generator:
+- EmblemGenerator.js (main file based on the original project)
+- assets.js (generated by the Asset Generator)
+- colors.js (where all the colors used are defined)
+- index.js (to instanciate the Emblem Generator)
+
+I you make any change to one of those files (in fact, you should'nt have to modify `assets.js` that is a generated file), you should run `yarn build` to regenerate `emblem-generator.js`
 
 ### Author
 
-Benoît Ripoche
+Benoît Ripoche - Kiplin
 
-#### Author of original library
-Mladen Todorovic
-mtodor@gmail.com
+benoit.ripoche@kiplin.com
