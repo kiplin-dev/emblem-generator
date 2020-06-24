@@ -1,6 +1,6 @@
 import Raphael from 'raphael'
-import assets from "./assets";
-import colors from "./colors";
+import assets from './assets'
+import colors from './colors'
 
 class EmblemGenerator {
   constructor() {

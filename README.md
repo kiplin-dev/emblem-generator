@@ -4,30 +4,36 @@ Based on unmaintained repository [GW2Emblem](https://github.com/mtodor/gw2emblem
 
 ### How to use!
 
+#### In browser
 Include `emblem-generator.js` file into HTML:
 
 ```
 <script type="text/javascript" src="emblem-generator.js"></script>
 ```
 
-Init emblemGenerator in empty div with the id 'emblem-div'
+#### In NodeJS environment
+`import emblemGenerator from 'emblem-generator';`
+
+#### Usage
+
+Initiate emblemGenerator in empty div with the id 'emblem-div'
 
 ```
-    // 'emblem-div' is div ID and 256 is size of emblem in pixels
-    emblemGenerator.init('emblem-div', 256);
+// 'emblem-div' is div ID and 256 is size of emblem in pixels
+emblemGenerator.init('emblem-div', 256);
 ```
 
 Display Emblem defined with object option:
 
 ```
-    emblemGenerator.drawEmblemObj({
-    	"background_id":1,
-    	"foreground_id":"star",
-    	"flags":[],
-    	"background_color_id":348,
-    	"foreground_primary_color_id":52,
-    	"foreground_secondary_color_id":113
-    });
+emblemGenerator.drawEmblemObj({
+	"background_id":1,
+	"foreground_id":"star",
+	"flags":[],
+	"background_color_id":348,
+	"foreground_primary_color_id":52,
+	"foreground_secondary_color_id":113
+});
 ```
 
 It's possible to use background color (instead of default image) - it's sent as 3rd argument for init function call:

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Generate SVG emblems",
   "main": "index.js",
+  "module": "src/module/index.js",
   "scripts": {
     "build-asset-generator": "babel src/asset-generator -d util",
     "generate-assets": "node util/AssetGenerator.js",
