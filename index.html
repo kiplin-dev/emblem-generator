@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <title>Emblem Generator Example</title>
     <script type="text/javascript" src="emblem-generator.js"></script>
+    <script type="text/javascript" src="customAssets.js"></script>
+    <script type="text/javascript" src="customColors.js"></script>
 </head>
 <body>
     <h2>Emblem Generator Example</h2>
     <div id="emblem-div"></div>
 
     <script>
-      emblemGenerator.init('emblem-div', 256);
+      var myAssets = {
+        defs: assets.defs,
+        bg_defs: assets.bg_defs,
+        color_defs: colors
+      };
+
+      emblemGenerator.init('emblem-div', 256, myAssets, 'transparent');
 
       emblemGenerator.drawEmblemObj({
         "background_id":1,
         "foreground_id":"star",
         "flags":[],
-        "background_color_id":348,
-        "foreground_primary_color_id":52,
-        "foreground_secondary_color_id":113
+        "background_color_id":1,
+        "foreground_primary_color_id":2,
+        "foreground_secondary_color_id":3
       });
     </script>
 </body>

@@ -1,6 +1,6 @@
 import Raphael from 'raphael'
-import assets from './assets'
-import colors from './colors'
+import defaultAssets from './defaultAssets'
+import defaultColors from './defaultColors'
 
 class EmblemGenerator {
   constructor() {
@@ -11,14 +11,15 @@ class EmblemGenerator {
       "FlipForegroundHorizontal": 8
     }
 
-    this.defs = assets.defs
-    this.bg_defs = assets.bg_defs
-
-    this.color_defs = colors
+    this.defaultAssets = {
+      defs: defaultAssets.defs,
+      bg_defs: defaultAssets.bg_defs,
+      color_defs: defaultColors
+    }
   }
 
 
-  init(id, size, bgColor) {
+  init(id, size, assets, bgColor) {
     this.paper = Raphael(id, size, size);
 
     // used for shadow over color
@@ -30,6 +31,11 @@ class EmblemGenerator {
 
     // used for emblem background
     this.bg_op = 1;
+
+    // assets
+    this.defs = (assets && assets.defs) ? assets.defs : this.defaultAssets.defs
+    this.bg_defs = (assets && assets.bg_defs) ? assets.bg_defs : this.defaultAssets.bg_defs
+    this.color_defs = (assets && assets.color_defs) ? assets.color_defs : this.defaultAssets.color_defs
 
     // paper background
     this.bg_color = bgColor || '';
@@ -45,18 +51,18 @@ class EmblemGenerator {
   drawEmblemObj (EGobj) {
     this.setFlipsEG(EGobj.flags);
 
-    var colorBg = this.color_defs[EGobj.background_color_id] || '#000000',
+    const colorBg = this.color_defs[EGobj.background_color_id] || '#000000',
       color1 = this.color_defs[EGobj.foreground_secondary_color_id] || '#FFFFFF',
       color2 = this.color_defs[EGobj.foreground_primary_color_id] || '#FF0000';
 
-    var defFg = this.defs[EGobj.foreground_id] || '',
+    const defFg = this.defs[EGobj.foreground_id] || '',
       defBg = this.bg_defs[EGobj.background_id] || '';
 
     this.drawEmblem(defFg, color1, color2, defBg, colorBg);
   }
 
   drawEmblem (defFg, color1, color2, defBg, colorBg) {
-    var paper = this.paper;
+    const paper = this.paper;
 
     paper.clear();
 
@@ -71,11 +77,11 @@ class EmblemGenerator {
   }
 
   drawEmblemFg (def, color1, color2) {
-    var paper = this.paper,
-      i;
+    const paper = this.paper;
+    let i;
 
-    var scale = paper.width / this.base_size,
-      transformStr = (scale != 1) ? 's'.concat(scale, ',', scale, ',0,0') : '';
+    const scale = paper.width / this.base_size;
+    let transformStr = (scale !== 1) ? 's'.concat(scale, ',', scale, ',0,0') : '';
 
     if (this.flip > 3)
     {
@@ -83,7 +89,7 @@ class EmblemGenerator {
     }
 
     this.paths = [];
-    var paths = this.paths;
+    const paths = this.paths;
     if (def.p1)
     {
       for(i=0;i<def.p1.length;i++)
@@ -112,12 +118,12 @@ class EmblemGenerator {
   }
 
   drawEmblemBg (def, color) {
-    var paper = this.paper,
-      i,
-      opacity = def.t ? this.bg_op : 1;
+    const paper = this.paper;
+    let i;
+    const opacity = def.t ? this.bg_op : 1;
 
-    var scale = paper.width / this.base_size,
-      transformStr = (scale != 1) ? 's'.concat(scale, ',', scale, ',0,0') : '';
+    const scale = paper.width / this.base_size;
+    let transformStr = (scale !== 1) ? 's'.concat(scale, ',', scale, ',0,0') : '';
 
     if ((this.flip & 1) !== 0 || (this.flip & 2) !== 0)
     {
@@ -126,7 +132,7 @@ class EmblemGenerator {
 
     this.bg_paths = [];
 
-    var paths = this.bg_paths;
+    const paths = this.bg_paths;
     if (def.p)
     {
       for(i=0;i<def.p.length;i++)
@@ -139,7 +145,7 @@ class EmblemGenerator {
   setFlipsEG (flags) {
     this.flip = 0;
 
-    for(var i=0; i<flags.length; i++)
+    for(let i=0; i<flags.length; i++)
     {
       if (this.flags_defs[flags[i]])
       {

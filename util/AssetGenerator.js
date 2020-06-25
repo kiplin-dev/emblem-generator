@@ -41,9 +41,7 @@ var AssetGenerator = function () {
       assets += bgDefs;
       assets += defs;
 
-      assets += '\n\nexport default assets;';
-
-      _fs2.default.writeFile('src/emblem-generator/assets.js', assets, function (err) {
+      _fs2.default.writeFile('customAssets.js', assets, function (err) {
         // throws an error, you could also catch it here
         if (err) throw err;
 

@@ -36,13 +36,69 @@ emblemGenerator.drawEmblemObj({
 });
 ```
 
-It's possible to use background color (instead of default image) - it's sent as 3rd argument for init function call:
+#### Options
+
+##### Assets
+
+It's possible to use custom assets (instead of default assets) - it's sent as 3rd argument for init function call:
+
 ```
-emblemGenerator.init('emblem-div', 128, 'transparent');
+emblemGenerator.init('emblem-div', 128, myAssets);
+```
+
+`myAssets` var is an object in which you can define three different items:
+- `defs`: the emblems
+- `bg_defs`: the backgrounds
+- `color_defs`: the colors
+
+```
+var myAssets = {
+    defs: {},
+    bg_defs: {},
+    color_defs: {},
+}
+```
+
+`defs` and `bg_defs` can be easily generated with the Asset Generator (see below). Demo custom assets are available in the `customAssets.js` file.
+
+`color_defs` is an simple object defining a key and a color code:
+
+```
+const colors = {
+  "1":"#ff0000","2":"#ff00ff","3":"#0000ff"
+}
+```
+
+Demo custom colors are available in the `customColors.js` file. just add your own desired colors in it!
+
+So, you can import these two demo files:
+```
+<script type="text/javascript" src="customAssets.js"></script>
+<script type="text/javascript" src="customColors.js"></script>
+```
+
+Then define `myAssets` var like this:
+```
+var myAssets = {
+    defs: assets.defs,
+    bg_defs: assets.bg_defs,
+    color_defs: colors
+};
+```
+
+You can define one or many of these three items, if not define, default assets will be used.
+
+You can leave it blank or set it to `default` to use the default assets.
+
+##### Background
+
+It's possible to use background color (instead of default image) - it's sent as 4th argument for init function call:
+```
+emblemGenerator.init('emblem-div', 128, 'default', 'transparent');
 ```
 or
 ```
-emblemGenerator.init('emblem-div', 128, '#3682a0');
+emblemGenerator.init('emblem-div', 128, 'default', #3682a0');
 ```
 
 ### Development
@@ -91,9 +147,9 @@ The files have some requirements so that the Asset Generator works properly:
     
 ##### Generate the assets
 
-Run `yarn generate-assets` to generate the assets then run `yarn build` to rebuild the `embelm-generator.js` file.
+Run `yarn generate-assets` to regenerate the `customAssets.js` file.
 
-You will now be able to use the new assets by passing their IDs (the SVG filename without the extension) to the object array in `drawEmblemObj()` method in your html file.
+You will now be able to define the custom assets in the `init()` method (see upon) and to use them by passing their IDs (the SVG filename without the extension) to the object array in `drawEmblemObj()` method in your html file.
 
 #### Modify the source code
 

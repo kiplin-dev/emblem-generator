@@ -15,9 +15,7 @@ class AssetGenerator {
     assets += bgDefs
     assets += defs
 
-    assets += '\n\nexport default assets;'
-
-    fs.writeFile('src/emblem-generator/assets.js', assets, (err) => {
+    fs.writeFile('customAssets.js', assets, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
 
