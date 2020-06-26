@@ -42,6 +42,7 @@ var AssetGenerator = function () {
       assets += defs;
 
       var exportPath = _path2.default.join(exportFolder, 'customAssets.js');
+
       _fs2.default.writeFile(exportPath, assets, function (err) {
         // throws an error, you could also catch it here
         if (err) throw err;

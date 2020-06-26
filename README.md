@@ -149,6 +149,8 @@ The files have some requirements so that the Asset Generator works properly:
 
 Run `yarn generate-assets` to regenerate the `customAssets.js` file.
 
+To export the file to a specific location, just add the path as argument to the command: `yarn generate-assets path/to/folder`
+
 You will now be able to define the custom assets in the `init()` method (see upon) and to use them by passing their IDs (the SVG filename without the extension) to the object array in `drawEmblemObj()` method in your html file.
 
 #### Modify the source code
