@@ -1,6 +1,7 @@
 import Raphael from 'raphael'
 import defaultAssets from './defaultAssets'
 import defaultColors from './defaultColors'
+import * as defaultBgImg from '../../assets/img_bg.png'
 
 class EmblemGenerator {
   constructor() {
@@ -39,7 +40,7 @@ class EmblemGenerator {
 
     // paper background
     this.bg_color = bgColor || '';
-    this.bg_img = 'assets/img_bg.png';
+    this.bg_img = defaultBgImg.default;
 
     // config required for transformation
     this.base_size = 256;
