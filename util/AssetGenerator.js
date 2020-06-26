@@ -34,7 +34,7 @@ var AssetGenerator = function () {
 
   _createClass(AssetGenerator, [{
     key: 'generate',
-    value: async function generate() {
+    value: async function generate(doExport) {
 
       var assets = 'const assets = {}\n\n';
 
@@ -43,6 +43,10 @@ var AssetGenerator = function () {
 
       assets += bgDefs;
       assets += defs;
+
+      if (doExport) {
+        assets += '\n\nexport default assets';
+      }
 
       var exportPath = _path2.default.join(this.exportFolder, 'customAssets.js');
 
@@ -275,10 +279,11 @@ var AssetGenerator = function () {
 
 var assetFolder = process.argv[2];
 var exportFolder = process.argv[3];
+var doExport = process.argv[4] === 'true' || process.argv[4] === '1';
 
 if (!assetFolder || !exportFolder) {
   console.log('\x1b[31m%s\x1b[0m', 'Please specify source asset folder and export folder');
 } else {
   var assetGenerator = new AssetGenerator(assetFolder, exportFolder);
-  assetGenerator.generate();
+  assetGenerator.generate(doExport);
 }

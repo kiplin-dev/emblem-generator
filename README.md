@@ -157,6 +157,8 @@ The `path/to/assets` folder must contains two sub-folder:
 
 Example: `yarn generate-assets assets .` will generate the `customAssets.js` file in the base directory of this project
 
+To use these custom assets in a ES6 project with 'import' syntax, the assets needs to be 'exported' with `export default assets` at the end of the file. To do this, just add 'true' as third argument of the command: `yarn generate-assets assets . true`
+
 You will now be able to define the custom assets in the `init()` method (see upon) and to use them by passing their IDs (the SVG filename without the extension) to the object array in `drawEmblemObj()` method in your html file.
 
 #### Modify the source code

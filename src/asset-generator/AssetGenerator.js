@@ -10,7 +10,7 @@ class AssetGenerator {
     this.exportFolder = exportFolder
   }
 
-  async generate() {
+  async generate(doExport) {
 
     let assets = 'const assets = {}\n\n'
 
@@ -19,6 +19,10 @@ class AssetGenerator {
 
     assets += bgDefs
     assets += defs
+
+    if (doExport) {
+      assets += '\n\nexport default assets'
+    }
 
     const exportPath = path.join(this.exportFolder, 'customAssets.js')
 
@@ -135,11 +139,12 @@ class AssetGenerator {
 
 const assetFolder = process.argv[2]
 const exportFolder = process.argv[3]
+const doExport = (process.argv[4] === 'true' || process.argv[4] === '1')
 
 if (!assetFolder || !exportFolder) {
   console.log('\x1b[31m%s\x1b[0m', 'Please specify source asset folder and export folder')
 } else {
   const assetGenerator = new AssetGenerator(assetFolder, exportFolder)
-  assetGenerator.generate()
+  assetGenerator.generate(doExport)
 }
 
