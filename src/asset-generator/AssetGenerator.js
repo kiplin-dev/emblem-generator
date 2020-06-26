@@ -16,7 +16,7 @@ class AssetGenerator {
     assets += defs
 
     const exportPath = path.join(exportFolder, 'customAssets.js')
-    
+
     fs.writeFile(exportPath, assets, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
