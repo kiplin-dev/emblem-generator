@@ -5,7 +5,7 @@ import { parse } from 'svg-parser'
 import regeneratorRuntime from "regenerator-runtime"
 
 class AssetGenerator {
-  async generate() {
+  async generate(exportFolder) {
 
     let assets = 'const assets = {}\n\n'
 
@@ -15,7 +15,9 @@ class AssetGenerator {
     assets += bgDefs
     assets += defs
 
-    fs.writeFile('customAssets.js', assets, (err) => {
+    const exportPath = path.join(exportFolder, 'customAssets.js')
+    
+    fs.writeFile(exportPath, assets, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
 
@@ -126,7 +128,9 @@ class AssetGenerator {
   }
 }
 
+const exportFolder = process.argv[2] ? process.argv[2] : '.'
+
 const assetGenerator = new AssetGenerator()
 
-assetGenerator.generate()
+assetGenerator.generate(exportFolder)
 

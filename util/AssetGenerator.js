@@ -31,7 +31,7 @@ var AssetGenerator = function () {
 
   _createClass(AssetGenerator, [{
     key: 'generate',
-    value: async function generate() {
+    value: async function generate(exportFolder) {
 
       var assets = 'const assets = {}\n\n';
 
@@ -41,7 +41,8 @@ var AssetGenerator = function () {
       assets += bgDefs;
       assets += defs;
 
-      _fs2.default.writeFile('customAssets.js', assets, function (err) {
+      var exportPath = _path2.default.join(exportFolder, 'customAssets.js');
+      _fs2.default.writeFile(exportPath, assets, function (err) {
         // throws an error, you could also catch it here
         if (err) throw err;
 
@@ -266,6 +267,8 @@ var AssetGenerator = function () {
   return AssetGenerator;
 }();
 
+var exportFolder = process.argv[2] ? process.argv[2] : '.';
+
 var assetGenerator = new AssetGenerator();
 
-assetGenerator.generate();
+assetGenerator.generate(exportFolder);
