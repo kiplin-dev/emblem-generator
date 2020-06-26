@@ -25,13 +25,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var AssetGenerator = function () {
-  function AssetGenerator() {
+  function AssetGenerator(assetFolder, exportFolder) {
     _classCallCheck(this, AssetGenerator);
+
+    this.assetFolder = assetFolder;
+    this.exportFolder = exportFolder;
   }
 
   _createClass(AssetGenerator, [{
     key: 'generate',
-    value: async function generate(exportFolder) {
+    value: async function generate() {
 
       var assets = 'const assets = {}\n\n';
 
@@ -41,14 +44,14 @@ var AssetGenerator = function () {
       assets += bgDefs;
       assets += defs;
 
-      var exportPath = _path2.default.join(exportFolder, 'customAssets.js');
+      var exportPath = _path2.default.join(this.exportFolder, 'customAssets.js');
 
       _fs2.default.writeFile(exportPath, assets, function (err) {
         // throws an error, you could also catch it here
         if (err) throw err;
 
         // success case, the file was saved
-        console.log('Assets successfully generated!');
+        console.log('\x1b[32m%s\x1b[0m', 'Assets successfully generated!');
       });
     }
   }, {
@@ -58,7 +61,7 @@ var AssetGenerator = function () {
 
       return new Promise(function (resolve, reject) {
         // EMBLEMS
-        var emblemsPath = _path2.default.join(__dirname, '../assets/emblems/');
+        var emblemsPath = _path2.default.join(_this.assetFolder, 'emblems');
 
         _fs2.default.readdir(emblemsPath, async function (err, files) {
           if (err) throw err;
@@ -193,9 +196,11 @@ var AssetGenerator = function () {
   }, {
     key: '_generateBgDefs',
     value: function _generateBgDefs() {
+      var _this2 = this;
+
       return new Promise(function (resolve, reject) {
         // BACKGROUNDS
-        var bgPath = _path2.default.join(__dirname, '../assets/backgrounds/');
+        var bgPath = _path2.default.join(_this2.assetFolder, 'backgrounds');
 
         _fs2.default.readdir(bgPath, function (err, files) {
           if (err) throw err;
@@ -268,8 +273,12 @@ var AssetGenerator = function () {
   return AssetGenerator;
 }();
 
-var exportFolder = process.argv[2] ? process.argv[2] : '.';
+var assetFolder = process.argv[2];
+var exportFolder = process.argv[3];
 
-var assetGenerator = new AssetGenerator();
-
-assetGenerator.generate(exportFolder);
+if (!assetFolder || !exportFolder) {
+  console.log('\x1b[31m%s\x1b[0m', 'Please specify source asset folder and export folder');
+} else {
+  var assetGenerator = new AssetGenerator(assetFolder, exportFolder);
+  assetGenerator.generate();
+}

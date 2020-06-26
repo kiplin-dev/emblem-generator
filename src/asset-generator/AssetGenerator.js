@@ -5,7 +5,12 @@ import { parse } from 'svg-parser'
 import regeneratorRuntime from "regenerator-runtime"
 
 class AssetGenerator {
-  async generate(exportFolder) {
+  constructor(assetFolder, exportFolder) {
+    this.assetFolder = assetFolder
+    this.exportFolder = exportFolder
+  }
+
+  async generate() {
 
     let assets = 'const assets = {}\n\n'
 
@@ -15,21 +20,21 @@ class AssetGenerator {
     assets += bgDefs
     assets += defs
 
-    const exportPath = path.join(exportFolder, 'customAssets.js')
+    const exportPath = path.join(this.exportFolder, 'customAssets.js')
 
     fs.writeFile(exportPath, assets, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
 
       // success case, the file was saved
-      console.log('Assets successfully generated!');
+      console.log('\x1b[32m%s\x1b[0m', 'Assets successfully generated!')
     });
   }
 
   _generateDefs() {
     return new Promise((resolve, reject) => {
       // EMBLEMS
-      const emblemsPath = path.join(__dirname, '../assets/emblems/')
+      const emblemsPath = path.join(this.assetFolder, 'emblems')
 
       fs.readdir(emblemsPath, async (err, files) => {
         if (err) throw err;
@@ -80,7 +85,7 @@ class AssetGenerator {
   _generateBgDefs() {
     return new Promise((resolve, reject) => {
       // BACKGROUNDS
-      const bgPath = path.join(__dirname, '../assets/backgrounds/')
+      const bgPath = path.join(this.assetFolder, 'backgrounds')
 
       fs.readdir(bgPath, (err, files) => {
         if (err) throw err
@@ -128,9 +133,13 @@ class AssetGenerator {
   }
 }
 
-const exportFolder = process.argv[2] ? process.argv[2] : '.'
+const assetFolder = process.argv[2]
+const exportFolder = process.argv[3]
 
-const assetGenerator = new AssetGenerator()
-
-assetGenerator.generate(exportFolder)
+if (!assetFolder || !exportFolder) {
+  console.log('\x1b[31m%s\x1b[0m', 'Please specify source asset folder and export folder')
+} else {
+  const assetGenerator = new AssetGenerator(assetFolder, exportFolder)
+  assetGenerator.generate()
+}
 
