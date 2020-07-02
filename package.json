@@ -1,6 +1,6 @@
 {
   "name": "emblem-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate SVG emblems",
   "main": "index.js",
   "module": "src/module/index.js",
@@ -24,12 +24,14 @@
     "url": "https://github.com/Pochwar/emblem-generator/issues"
   },
   "homepage": "https://github.com/Pochwar/emblem-generator#readme",
+  "dependencies": {
+    "raphael": "^2.3.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "extract-svg-path": "^2.1.0",
     "file-loader": "^6.0.0",
-    "raphael": "^2.3.0",
     "regenerator-runtime": "^0.13.5",
     "svg-parser": "^2.0.4",
     "webpack": "^4.43.0",
