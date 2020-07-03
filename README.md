@@ -2,6 +2,9 @@
 
 Based on unmaintained repository [GW2Emblem](https://github.com/mtodor/gw2emblem) by Mladen Todorovic (mtodor@gmail.com)
 
+### Demo
+https://www.pochworld.com/emblem-generator/
+
 ### How to use!
 
 #### In browser
