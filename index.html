@@ -11,6 +11,21 @@
     <h2>Emblem Generator Example</h2>
     <div id="emblem-div"></div>
 
+    <textarea name="" id="data" cols="30" rows="10"></textarea>
+    <br>
+    <button id="generateBtn">Generate</button>
+
+    <div id="info">
+        <h4>Change the emblem data in the textarea above then click "generate"</h4>
+        <ul>
+            <li>Available background IDs: [0, 1, 2, 3, 4]</li>
+            <li>Available foreground IDs: ["cup", "pyramid", "star", "turtle"]</li>
+            <li>Available flags: ["FlipBackgroundVertical", "FlipBackgroundHorizontal", "FlipForegroundVertical", "FlipForegroundHorizontal"]</li>
+            <li>Available color IDs: [1, ... , 1242]</li>
+        </ul>
+
+    </div>
+
     <script>
       var myAssets = {
         defs: assets.defs,
@@ -18,16 +33,27 @@
         color_defs: colors
       };
 
+      var emblemData = {
+          "background_id":2,
+          "foreground_id":"star",
+          "flags":[],
+          "background_color_id":123,
+          "foreground_primary_color_id":143,
+          "foreground_secondary_color_id":148
+      };
+
       emblemGenerator.init('emblem-div', 256, myAssets);
 
-      emblemGenerator.drawEmblemObj({
-        "background_id":1,
-        "foreground_id":"star",
-        "flags":[],
-        "background_color_id":1,
-        "foreground_primary_color_id":2,
-        "foreground_secondary_color_id":3
-      });
+      emblemGenerator.drawEmblemObj(emblemData);
+
+      var textarea = document.getElementById('data');
+      textarea.innerText = JSON.stringify(emblemData);
+
+      var generateBtn = document.getElementById('generateBtn');
+      generateBtn.onclick = function() {
+          var data = JSON.parse(textarea.value)
+          emblemGenerator.drawEmblemObj(data);
+      }
     </script>
 </body>
 </html>
