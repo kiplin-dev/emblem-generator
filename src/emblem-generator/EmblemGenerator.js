@@ -1,6 +1,5 @@
 import Raphael from 'raphael'
 import defaultAssets from './defaultAssets'
-import defaultColors from './defaultColors'
 import * as defaultBgImg from '../../assets/img_bg.png'
 
 class EmblemGenerator {
@@ -14,8 +13,7 @@ class EmblemGenerator {
 
     this.defaultAssets = {
       defs: defaultAssets.defs,
-      bg_defs: defaultAssets.bg_defs,
-      color_defs: defaultColors
+      bg_defs: defaultAssets.bg_defs
     }
   }
 
@@ -36,7 +34,6 @@ class EmblemGenerator {
     // assets
     this.defs = (assets && assets.defs) ? assets.defs : this.defaultAssets.defs
     this.bg_defs = (assets && assets.bg_defs) ? assets.bg_defs : this.defaultAssets.bg_defs
-    this.color_defs = (assets && assets.color_defs) ? assets.color_defs : this.defaultAssets.color_defs
 
     // paper background
     this.bg_color = bgColor || '';
@@ -52,9 +49,9 @@ class EmblemGenerator {
   drawEmblemObj (EGobj) {
     this.setFlipsEG(EGobj.flags);
 
-    const colorBg = this.color_defs[EGobj.background_color_id] || '#000000',
-      color1 = this.color_defs[EGobj.foreground_secondary_color_id] || '#FFFFFF',
-      color2 = this.color_defs[EGobj.foreground_primary_color_id] || '#FF0000';
+    const colorBg = EGobj.background_color || '#000000',
+      color1 = EGobj.foreground_secondary_color || '#FFFFFF',
+      color2 = EGobj.foreground_primary_color || '#FF0000';
 
     const defFg = this.defs[EGobj.foreground_id] || '',
       defBg = this.bg_defs[EGobj.background_id] || '';

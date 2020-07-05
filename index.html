@@ -5,7 +5,6 @@
     <title>Emblem Generator Example</title>
     <script type="text/javascript" src="emblem-generator.js"></script>
     <script type="text/javascript" src="customAssets.js"></script>
-    <script type="text/javascript" src="customColors.js"></script>
 </head>
 <body>
     <h2>Emblem Generator Example</h2>
@@ -21,7 +20,14 @@
             <li>Available background IDs: [0, 1, 2, 3, 4]</li>
             <li>Available foreground IDs: ["cup", "pyramid", "star", "turtle"]</li>
             <li>Available flags: ["FlipBackgroundVertical", "FlipBackgroundHorizontal", "FlipForegroundVertical", "FlipForegroundHorizontal"]</li>
-            <li>Available color IDs: [1, ... , 1242]</li>
+            <li>
+                Available color value types:
+                <ul>
+                    <li>Hexadecimal - ex: #ff0000</li>
+                    <li>RGB - ex: rgb(45,75,124)</li>
+                    <li>HLS  - ex: hsl(45,100,50)</li>
+                </ul>
+            </li>
         </ul>
 
     </div>
@@ -29,17 +35,16 @@
     <script>
       var myAssets = {
         defs: assets.defs,
-        bg_defs: assets.bg_defs,
-        color_defs: colors
+        bg_defs: assets.bg_defs
       };
 
       var emblemData = {
           "background_id":2,
           "foreground_id":"star",
           "flags":[],
-          "background_color_id":123,
-          "foreground_primary_color_id":143,
-          "foreground_secondary_color_id":148
+          "background_color":'#ff0000',
+          "foreground_primary_color":'rgb(45,75,124)',
+          "foreground_secondary_color":'hsl(45,100,50)'
       };
 
       emblemGenerator.init('emblem-div', 256, myAssets);
