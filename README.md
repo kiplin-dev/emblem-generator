@@ -2,6 +2,8 @@
 
 Based on unmaintained repository [GW2Emblem](https://github.com/mtodor/gw2emblem) by Mladen Todorovic (mtodor@gmail.com)
 
+A VueJS version is available here: https://github.com/kiplin-dev/emblem-generator-vue
+
 ### Demo
 https://www.pochworld.com/emblem-generator/
 
