@@ -125,18 +125,18 @@ The files have some requirements so that the Asset Generator works properly:
 - For backgrounds, `path` tags must be nested just below the `svg` tag. See the SVG files in `assets/backgrounds` folder for example
 - For emblems, `path` tags must be nested just below the `svg` tag OR nested in a `g` tag to group paths by fill color. The `g` must be nested under the `svg` tag. See the SVG files in `assets/emblems` folder for example
 - For emblems, the fill color will be used to determinate to which group belongs the shape. There are 4 different groups:
-    - Primary color (use the `foreground_primary_color_id` option)
-    - Secondary color (use the `foreground_secondary_color_id` option)
-    - Secondary color transparent (use the `foreground_secondary_color_id` option with some opacity)
+    - Primary color (use the `foreground_primary_color` option)
+    - Primary color transparent (use the `foreground_primary_color` option with some opacity)
+    - Secondary color (use the `foreground_secondary_color` option)
     - Black transparent (use black color with some opacity)
  
     So to determine in which group to dispatch the path, check this table:
     
-    | Group                       | Color code                   |
+    | Group                       | Color code                 |
     |-----------------------------|----------------------------|
     | Primary color               | #ff0000                    |
-    | Secondary color             | #00ff00                    |
-    | Secondary color transparent | #0000ff                    |
+    | Primary color transparent   | #00ff00                    |
+    | Secondary color             | #0000ff                    |
     | Black transparent           | #000000 or any other color |
     
     Once again, see the SVG files in `assets/emblems` folder for example

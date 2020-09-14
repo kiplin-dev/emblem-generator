@@ -256,15 +256,15 @@ var AssetGenerator = function () {
       switch (fill) {
         // Primary Color
         case '#ff0000':
-          p2.push('"' + path + '"');
-          break;
-        // Secondary Color
-        case '#00ff00':
           p1.push('"' + path + '"');
           break;
-        // Secondary Color Transparent
-        case '#0000ff':
+        // Primary Color Transparent
+        case '#00ff00':
           pt1.push('"' + path + '"');
+          break;
+        // Secondary Color
+        case '#0000ff':
+          p2.push('"' + path + '"');
           break;
         // Default - Black transparent
         default:

@@ -50,8 +50,8 @@ class EmblemGenerator {
     this.setFlipsEG(EGobj.flags);
 
     const colorBg = EGobj.background_color || '#000000',
-      color1 = EGobj.foreground_secondary_color || '#FFFFFF',
-      color2 = EGobj.foreground_primary_color || '#FF0000';
+      color1 = EGobj.foreground_primary_color || '#FF0000',
+      color2 = EGobj.foreground_secondary_color || '#FFFFFF';
 
     const defFg = this.defs[EGobj.foreground_id] || '',
       defBg = this.bg_defs[EGobj.background_id] || '';
