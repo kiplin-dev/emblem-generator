@@ -1,6 +1,6 @@
 {
   "name": "emblem-generator",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Generate SVG emblems",
   "main": "index.js",
   "module": "src/module/index.js",
