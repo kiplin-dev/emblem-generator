@@ -19,14 +19,14 @@ Include `emblem-generator.js` file into HTML:
 #### In NodeJS environment
 ```javascript
 import EmblemGenerator from 'emblem-generator';
-const emblemGenerator = new EmblemGenerator();
 ```
 
 #### Usage
 
-Initiate emblemGenerator in empty div with the id 'emblem-div'
+Instantiate EmblemGenerator, then, initiate emblemGenerator in empty div with the id 'emblem-div'
 
 ```javascript
+const emblemGenerator = new EmblemGenerator();
 // 'emblem-div' is div ID and 256 is size of emblem in pixels
 emblemGenerator.init('emblem-div', 256);
 ```
