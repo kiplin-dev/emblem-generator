@@ -53,6 +53,8 @@ class EmblemGenerator {
       color1 = EGobj.foreground_primary_color || '#FF0000',
       color2 = EGobj.foreground_secondary_color || '#FFFFFF';
 
+    this.pto2_op = EGobj.black_opacity || this.pto2_op;
+
     const defFg = this.defs[EGobj.foreground_id] || '',
       defBg = this.bg_defs[EGobj.background_id] || '';
 

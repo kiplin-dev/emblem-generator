@@ -28,6 +28,7 @@
                     <li>HLS  - ex: hsl(45,100,50)</li>
                 </ul>
             </li>
+            <li>Opacity level: from 0 (transparent) to 1 (opaque)</li>
         </ul>
 
     </div>
@@ -44,12 +45,13 @@
           "flags":[],
           "background_color":'#ff0000',
           "foreground_primary_color":'rgb(45,75,124)',
-          "foreground_secondary_color":'hsl(45,100,50)'
+          "foreground_secondary_color":'hsl(45,100,50)',
+          "black_opacity":1
       };
 
       var emblemGenerator = new EmblemGenerator();
 
-      emblemGenerator.init('emblem-div', 256, myAssets);
+      emblemGenerator.init('emblem-div', 256, myAssets, 'transparent');
 
       emblemGenerator.drawEmblemObj(emblemData);
 
