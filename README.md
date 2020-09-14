@@ -12,25 +12,28 @@ https://www.pochworld.com/emblem-generator/
 #### In browser
 Include `emblem-generator.js` file into HTML:
 
-```
+```html
 <script type="text/javascript" src="emblem-generator.js"></script>
 ```
 
 #### In NodeJS environment
-`import emblemGenerator from 'emblem-generator';`
+```javascript
+import EmblemGenerator from 'emblem-generator';
+const emblemGenerator = new EmblemGenerator();
+```
 
 #### Usage
 
 Initiate emblemGenerator in empty div with the id 'emblem-div'
 
-```
+```javascript
 // 'emblem-div' is div ID and 256 is size of emblem in pixels
 emblemGenerator.init('emblem-div', 256);
 ```
 
 Display Emblem defined with object option:
 
-```
+```javascript
 emblemGenerator.drawEmblemObj({
     "background_id":1,
     "foreground_id":"star",
@@ -47,7 +50,7 @@ emblemGenerator.drawEmblemObj({
 
 It's possible to use custom assets (instead of default assets) - it's sent as 3rd argument for init function call:
 
-```
+```javascript
 emblemGenerator.init('emblem-div', 128, myAssets);
 ```
 
@@ -55,7 +58,7 @@ emblemGenerator.init('emblem-div', 128, myAssets);
 - `defs`: the emblems
 - `bg_defs`: the backgrounds
 
-```
+```javascript
 var myAssets = {
     defs: {},
     bg_defs: {},
@@ -67,12 +70,12 @@ var myAssets = {
 Demo custom colors are available in the `customColors.js` file. just add your own desired colors in it!
 
 So, you can import these demo file:
-```
+```html
 <script type="text/javascript" src="customAssets.js"></script>
 ```
 
 Then define `myAssets` var like this:
-```
+```javascript
 var myAssets = {
     defs: assets.defs,
     bg_defs: assets.bg_defs
@@ -86,12 +89,12 @@ You can leave it blank or set it to `default` to use the default assets.
 ##### Background
 
 It's possible to use background color (instead of default image) - it's sent as 4th argument for init function call:
-```
+```javascript
 emblemGenerator.init('emblem-div', 128, 'default', 'transparent');
 ```
 or
-```
-emblemGenerator.init('emblem-div', 128, 'default', #3682a0');
+```javascript
+emblemGenerator.init('emblem-div', 128, 'default', '#3682a0');
 ```
 
 ### Development
